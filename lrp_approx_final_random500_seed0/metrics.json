@@ -1,0 +1,39 @@
+{
+  "multilabel": {
+    "micro_precision": 0.3167006109979633,
+    "micro_recall": 0.572744014732965,
+    "micro_f1": 0.4078688524590164,
+    "macro_precision": 0.33106251771995904,
+    "macro_recall": 0.4282330775228318,
+    "macro_f1": 0.34174552166074673,
+    "macro_auroc": 0.7800225490238837,
+    "macro_map": 0.3173316734958828
+  },
+  "args": {
+    "pylon_repo": "/home/shakib/Desktop/S5/projet/pylon",
+    "ckpt": "/home/shakib/Desktop/S5/projet/pylon_ckpt/pylon_nih_256.pkl",
+    "csv": "/home/shakib/Desktop/S5/projet/Dataset/archive/Data_Entry_2017.csv",
+    "images_root": "/home/shakib/Desktop/S5/projet/Dataset/archive",
+    "split_list": "/home/shakib/Desktop/S5/projet/Dataset/archive/test_list.txt",
+    "out_dir": "/home/shakib/Desktop/S5/projet/xai_outputs/lrp_approx_final_random500_seed0",
+    "img_size": 256,
+    "thr": 0.1,
+    "tau_nf": 0.07,
+    "sample_n": 500,
+    "sample_mode": "random",
+    "seed": 0,
+    "topk": 1,
+    "lrp_mode": "pos",
+    "cam_norm_low": 5.0,
+    "cam_norm_high": 99.0,
+    "cam_gamma": 0.9,
+    "cam_alpha": 0.4,
+    "cam_amplify": 1.0,
+    "cpu": true,
+    "up_max": 3,
+    "save_raw": true
+  },
+  "processed": 500,
+  "skipped_missing": 0,
+  "elapsed_sec": 336.0426070690155
+}
