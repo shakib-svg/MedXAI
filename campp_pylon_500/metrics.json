@@ -1,0 +1,46 @@
+{
+  "multilabel": {
+    "micro_precision": 0.3167006109979633,
+    "micro_recall": 0.572744014732965,
+    "micro_f1": 0.4078688524590164,
+    "macro_precision": 0.33106251771995904,
+    "macro_recall": 0.4282330775228318,
+    "macro_f1": 0.34174552166074673,
+    "macro_auroc": 0.7800225490238837,
+    "macro_map": 0.3173316734958828
+  },
+  "dominant15": {
+    "accuracy15": 0.478,
+    "macro_f1_15": 0.3873259039553606
+  },
+  "args": {
+    "pylon_repo": "/home/shakib/Desktop/S5/projet/pylon",
+    "ckpt": "/home/shakib/Desktop/S5/projet/pylon_ckpt/pylon_nih_256.pkl",
+    "csv": "/home/shakib/Desktop/S5/projet/Dataset/archive/Data_Entry_2017.csv",
+    "images_root": "/home/shakib/Desktop/S5/projet/Dataset/archive",
+    "split_list": "/home/shakib/Desktop/S5/projet/Dataset/archive/test_list.txt",
+    "out_dir": "/home/shakib/Desktop/S5/projet/xai_outputs/campp_final_500_fixed",
+    "img_size": 256,
+    "thr": 0.1,
+    "tau_nf": 0.07,
+    "sample_n": 500,
+    "sample_mode": "random",
+    "seed": 0,
+    "topk_cam": 1,
+    "target_layer": "layer4_first",
+    "up_max": 3,
+    "cpu": true,
+    "cam_border_suppress": 0.0,
+    "cam_norm_low": 5.0,
+    "cam_norm_high": 99.0,
+    "cam_gamma": 1.0,
+    "cam_alpha": 0.35,
+    "cam_amplify": 1.0,
+    "use_center_mask": false,
+    "center_mask_scale": 0.92,
+    "save_raw_cam": true
+  },
+  "processed": 500,
+  "skipped_missing": 0,
+  "elapsed_sec": 243.76408743858337
+}
