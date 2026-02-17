@@ -1,0 +1,43 @@
+{
+  "multilabel": {
+    "micro_precision": 0.6302521008403361,
+    "micro_recall": 0.27624309392265195,
+    "micro_f1": 0.38412291933418696,
+    "macro_precision": 0.515330321852061,
+    "macro_recall": 0.24783655266872126,
+    "macro_f1": 0.3069318459171092,
+    "macro_auroc": 0.8410127597376028,
+    "macro_map": 0.4533867544420303
+  },
+  "args": {
+    "ckpt": "/home/shakib/Desktop/S5/projet/chexnet/models/m-25012018-123527.pth.tar",
+    "csv": "/home/shakib/Desktop/S5/projet/Dataset/archive/Data_Entry_2017.csv",
+    "images_root": "/home/shakib/Desktop/S5/projet/Dataset/archive",
+    "split_list": "/home/shakib/Desktop/S5/projet/Dataset/archive/test_list.txt",
+    "out_dir": "/home/shakib/Desktop/S5/projet/xai_outputs/chexnet_campp_random500_seed0",
+    "thr": 0.5,
+    "tau_nf": 0.07,
+    "sample_n": 500,
+    "sample_mode": "random",
+    "seed": 0,
+    "target_layer": "features.denseblock4",
+    "cam_method": "campp",
+    "cam_on_predicted": true,
+    "cam_min_prob": 0.2,
+    "topk_cam": 2,
+    "cam_alpha": 0.65,
+    "cam_amplify": 2.0,
+    "cam_border_suppress": 0.03,
+    "cam_norm_low": 75.0,
+    "cam_norm_high": 99.5,
+    "cam_gamma": 2.0,
+    "use_center_mask": false,
+    "center_mask_scale": 0.92,
+    "save_raw_cam": true,
+    "debug_first": 5,
+    "cpu": false
+  },
+  "processed": 500,
+  "skipped_missing": 0,
+  "elapsed_sec": 249.28905749320984
+}
