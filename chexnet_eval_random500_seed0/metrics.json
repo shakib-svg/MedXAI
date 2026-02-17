@@ -1,0 +1,28 @@
+{
+  "multilabel": {
+    "micro_precision": 0.29433139534883723,
+    "micro_recall": 0.7458563535911602,
+    "micro_f1": 0.4220948410630536,
+    "macro_precision": 0.3118155506186161,
+    "macro_recall": 0.6551168465365361,
+    "macro_f1": 0.4150296657858065,
+    "macro_auroc": 0.8410127597376028,
+    "macro_map": 0.4533867544420303
+  },
+  "args": {
+    "ckpt": "/home/shakib/Desktop/S5/projet/chexnet/models/m-25012018-123527.pth.tar",
+    "csv": "/home/shakib/Desktop/S5/projet/Dataset/archive/Data_Entry_2017.csv",
+    "images_root": "/home/shakib/Desktop/S5/projet/Dataset/archive",
+    "split_list": "/home/shakib/Desktop/S5/projet/Dataset/archive/test_list.txt",
+    "out_dir": "/home/shakib/Desktop/S5/projet/xai_outputs/chexnet_eval_random500_seed0",
+    "thr": 0.1,
+    "tau_nf": 0.07,
+    "sample_n": 500,
+    "sample_mode": "random",
+    "seed": 0,
+    "cpu": true
+  },
+  "processed": 500,
+  "skipped_missing": 0,
+  "elapsed_sec": 395.0120105743408
+}
