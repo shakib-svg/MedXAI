@@ -1,0 +1,43 @@
+{
+  "multilabel": {
+    "micro_precision": 0.6302521008403361,
+    "micro_recall": 0.27624309392265195,
+    "micro_f1": 0.38412291933418696,
+    "macro_precision": 0.515330321852061,
+    "macro_recall": 0.24783655266872126,
+    "macro_f1": 0.3069318459171092,
+    "macro_auroc": 0.8410127597376028,
+    "macro_map": 0.4533867544420303
+  },
+  "args": {
+    "ckpt": "/home/shakib/Desktop/S5/projet/chexnet/models/m-25012018-123527.pth.tar",
+    "csv": "/home/shakib/Desktop/S5/projet/Dataset/archive/Data_Entry_2017.csv",
+    "images_root": "/home/shakib/Desktop/S5/projet/Dataset/archive",
+    "split_list": "/home/shakib/Desktop/S5/projet/Dataset/archive/test_list.txt",
+    "out_dir": "/home/shakib/Desktop/S5/projet/xai_outputs/chexnet_ig_random500_seed0",
+    "thr": 0.5,
+    "tau_nf": 0.07,
+    "sample_n": 500,
+    "sample_mode": "random",
+    "seed": 0,
+    "xai_on_predicted": true,
+    "topk_xai": 1,
+    "xai_min_prob": 0.3,
+    "ig_steps": 32,
+    "ig_internal_bs": 1,
+    "ig_mode": "abs",
+    "ig_baseline": "imagenet_mean",
+    "use_noise_tunnel": false,
+    "nt_samples": 8,
+    "nt_sigma": 0.1,
+    "xai_alpha": 0.65,
+    "xai_amplify": 2.0,
+    "xai_smooth_sigma": 1.2,
+    "save_raw": true,
+    "debug_first": 5,
+    "cpu": false
+  },
+  "processed": 500,
+  "skipped_missing": 0,
+  "elapsed_sec": 2866.4446761608124
+}
