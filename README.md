@@ -285,5 +285,4 @@ If `import cv2` fails, reinstall:
 
 ```bash
 pip install --force-reinstall opencv-python
-::contentReference[oaicite:0]{index=0}
 ```
