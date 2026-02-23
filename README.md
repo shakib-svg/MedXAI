@@ -133,79 +133,82 @@ python3 eval_nih_multilabel.py \
   --out_dir ./xai_outputs/output_pylon \
   --img_size 256
 ```
-Scripts
-CheXNet
+## Scripts
 
-chexnet_eval_500.py
-Evaluate CheXNet on NIH test split (optionally sampled). Saves CSV + metrics.
+### CheXNet
 
-chexnet_gradcam_500.py
-CheXNet Grad-CAM on a sample. Saves overlays and debug CSV with per-class probabilities.
+- `chexnet_eval_500.py`  
+  Evaluate CheXNet on NIH test split (optionally sampled). Saves CSV + metrics.
 
-chexnet_campp_500.py
-CheXNet Grad-CAM++ (CAM++). Saves overlays + CSV + metrics.
+- `chexnet_gradcam_500.py`  
+  CheXNet Grad-CAM on a sample. Saves overlays and debug CSV with per-class probabilities.
 
-chexnet_ig_500.py
-CheXNet Integrated Gradients on a sample. Saves IG maps + overlays + CSV + metrics.
+- `chexnet_campp_500.py`  
+  CheXNet Grad-CAM++ (CAM++). Saves overlays + CSV + metrics.
 
-chexnet_lrp_500.py, chexnet_lrp.py
-CheXNet LRP variants.
+- `chexnet_ig_500.py`  
+  CheXNet Integrated Gradients on a sample. Saves IG maps + overlays + CSV + metrics.
+
+- `chexnet_lrp_500.py`, `chexnet_lrp.py`  
+  CheXNet LRP variants.
 
 There are also older / helper files:
 
-chexnet_gradcampp.py
+- `chexnet_gradcampp.py`
+- `chexnet_integrated_gradients.py`
+- `laod_chexnet.py` (helper; filename has a typo)
 
-chexnet_integrated_gradients.py
+### Pylon
 
-laod_chexnet.py (helper; filename has a typo)
+These scripts load a local Pylon repo dynamically (via a `--pylon_repo` path) and run evaluation / explainability.
 
-Pylon
+- `eval_nih_multilabel.py`  
+  Full evaluation for Pylon, saves CSV + `.npz` outputs.
 
-These scripts load a local Pylon repo dynamically (via a --pylon_repo path) and run evaluation / explainability.
+- `pylon_gradcampp_eval_500.py`  
+  Grad-CAM++ for Pylon + evaluation + overlays (sample 500).
 
-eval_nih_multilabel.py
-Full evaluation for Pylon, saves CSV + .npz outputs.
+- `pylon_integrated_gradients_500.py`  
+  Integrated Gradients for Pylon (sample 500).
 
-pylon_gradcampp_eval_500.py
-Grad-CAM++ for Pylon + evaluation + overlays (sample 500).
+- `pylon_lrp_500.py`  
+  LRP for Pylon (sample 500).
 
-pylon_integrated_gradients_500.py
-Integrated Gradients for Pylon (sample 500).
+- `gradcam_nih_multilabel_pylon.py`  
+  Pylon Grad-CAM pipeline (multi-label NIH).
 
-pylon_lrp_500.py
-LRP for Pylon (sample 500).
+### Subset / utilities
 
-gradcam_nih_multilabel_pylon.py
-Pylon Grad-CAM pipeline (multi-label NIH).
+- `subset50new.py`  
+  Build a balanced NIH subset (default 50 images), copy images, write a subset CSV, and optionally a subset of bounding boxes.
 
-Subset / utilities
+- `effacer50.py`  
+  Utility to delete images not in a hard-coded keep-list (use carefully).
 
-subset50new.py
-Build a balanced NIH subset (default 50 images), copy images, write a subset CSV, and optionally a subset of bounding boxes.
+- `inspect_ckpt.py`  
+  Placeholder / helper (currently minimal in this repo snapshot).
 
-effacer50.py
-Utility to delete images not in a hard-coded keep-list (use carefully).
+- `gradcam_nf_multilabel_sample50.py`  
+  A Grad-CAM pipeline that runs on a 50-image subset and writes overlays + metrics.
 
-inspect_ckpt.py
-Placeholder / helper (currently minimal in this repo snapshot).
+---
 
-gradcam_nf_multilabel_sample50.py
-A Grad-CAM pipeline that runs on a 50-image subset and writes overlays + metrics.
-
-Outputs
+## Outputs
 
 Most evaluation/XAI scripts write:
 
-preds_with_*.csv — per-image rows, GT labels, predicted labels, top-1, etc.
+- `preds_with_*.csv` — per-image rows, GT labels, predicted labels, top-1, etc.
+- `metrics.json` — summary metrics + args + runtime
+- `overlays/` — PNG overlays (original + heatmap)
+- sometimes `raw/` — raw attribution maps or heat-only images (optional)
 
-metrics.json — summary metrics + args + runtime
+---
 
-overlays/ — PNG overlays (original + heatmap)
+## Repository layout
 
-sometimes raw/ — raw attribution maps or heat-only images (optional)
+Top-level (abridged):
 
-
-Repository layout
+```text
 .
 ├── campp_pylon_500/                         # saved run output(s)
 ├── chexnet_eval_random500_seed0/            # saved run output(s)
@@ -231,54 +234,56 @@ Repository layout
 ├── subset50new.py
 └── ...
 
-Included example outputs
+```
+## Included example outputs
 
-This repo already contains several output folders (CSV + metrics + overlays).
-For example, a committed CheXNet evaluation run (chexnet_eval_random500_seed0/metrics.json) shows:
+This repo already contains several output folders (CSV + metrics + overlays).  
+For example, a committed CheXNet evaluation run (`chexnet_eval_random500_seed0/metrics.json`) shows:
 
-thr=0.1, tau_nf=0.07, processed 500
-
-macro AUROC and mAP reported in metrics.json
+- `thr=0.1`, `tau_nf=0.07`, processed `500`
+- macro AUROC and mAP reported in `metrics.json`
 
 (Your results will vary depending on checkpoint + environment.)
 
-Notes on metrics
+---
+
+## Notes on metrics
 
 Most scripts report:
 
-Micro precision/recall/F1 (global)
-
-Macro precision/recall/F1 (per-class average)
-
-Macro AUROC and macro mAP (when scikit-learn is available)
+- Micro precision/recall/F1 (global)
+- Macro precision/recall/F1 (per-class average)
+- Macro AUROC and macro mAP (when scikit-learn is available)
 
 Some scripts also compute an auxiliary “dominant-15” score:
 
-treat prediction as one “dominant label” among 14 + “No Finding”
-
-compare to a “dominant GT” derived from GT labels and model probabilities
+- treat prediction as one “dominant label” among 14 + “No Finding”
+- compare to a “dominant GT” derived from GT labels and model probabilities
 
 This is useful for sanity checks, but NIH14 is inherently multi-label.
 
-Troubleshooting
-1) “Missing keys / classifier not loaded”
+---
+
+## Troubleshooting
+
+### 1) “Missing keys / classifier not loaded”
 
 Some CheXNet scripts include robust key-remapping for older checkpoints and will error if the classifier is not properly loaded. Verify:
 
-you used the correct checkpoint
+- you used the correct checkpoint
+- key prefixes (e.g., `module.`) are handled
+- classifier weights are present
 
-key prefixes (e.g., module.) are handled
+### 2) Images not found
 
-classifier weights are present
+Make sure `--images_root` points to the NIH archive root containing `images_*/images/`.  
+If you use a custom subset layout, keep the filenames consistent with `Data_Entry_2017.csv` / `test_list.txt`.
 
-2) Images not found
+### 3) OpenCV import issues
 
-Make sure --images_root points to the NIH archive root containing images_*/images/.
-If you use a custom subset layout, keep the filenames consistent with Data_Entry_2017.csv / test_list.txt.
+If `import cv2` fails, reinstall:
 
-3) OpenCV import issues
-
-If import cv2 fails, reinstall:
 ```bash
 pip install --force-reinstall opencv-python
+::contentReference[oaicite:0]{index=0}
 ```
